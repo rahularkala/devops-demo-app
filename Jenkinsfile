@@ -5,13 +5,13 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'docker run --rm -v ${WORKSPACE}:/app -w /app node:18 npm install'
+                sh 'npm install'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t devops-demo ${WORKSPACE}'
+                sh 'docker build -t devops-demo .'
             }
         }
 
