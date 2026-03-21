@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/rahularkala/devops-demo-app.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'docker run --rm -v ${WORKSPACE}:/app -w /app node:18 npm install'
@@ -17,7 +11,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t devops-demo .'
+                sh 'docker build -t devops-demo ${WORKSPACE}'
             }
         }
 
