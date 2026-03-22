@@ -29,7 +29,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 sh 'docker rm -f devops-container || true'
-                sh 'docker run -d -p 3000:3000 --name devops-container devops-demo'
+                sh 'docker run -d -p 3002:3000 --name devops-container devops-demo'
             }
         }
     }
