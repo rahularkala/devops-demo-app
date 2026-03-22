@@ -29,7 +29,6 @@ pipeline {
         stage('Run Container') {
             steps {
                 sh 'docker rm -f devops-container || true'
-                sh 'docker stop $(docker ps -q) || true'
                 sh 'docker run -d -p 3000:3000 --name devops-container devops-demo'
             }
         }
