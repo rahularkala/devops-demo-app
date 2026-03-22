@@ -9,6 +9,14 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh 'sonar-scanner'
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t devops-demo .'
@@ -17,7 +25,8 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 3001:3000 devops-demo'
+                sh 'docker rm -f devops-container || true'
+                sh 'docker run -d -p 3000:3000 --name devops-container devops-demo'
             }
         }
     }
