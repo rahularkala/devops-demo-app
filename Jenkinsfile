@@ -31,7 +31,7 @@ pipeline {
                 sh '''
                 docker run --rm \
                 -v /var/run/docker.sock:/var/run/docker.sock \
-                aquasec/trivy image devops-demo
+                aquasec/trivy:0.49.1 image devops-demo
                 '''
             }
         }
