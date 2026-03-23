@@ -28,7 +28,7 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                sh 'trivy image devops-demo'
+                sh '/c/Windows/System32/trivy.exe image devops-demo'
             }
         }
 
