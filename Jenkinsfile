@@ -26,6 +26,12 @@ pipeline {
             }
         }
 
+        stage('Security Scan') {
+            steps {
+                sh 'trivy image devops-demo'
+            }
+        }
+
         stage('Run Container') {
             steps {
                 sh 'docker rm -f devops-container || true'
