@@ -28,7 +28,11 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                sh '/c/Windows/System32/trivy.exe image devops-demo'
+                sh '''
+                docker run --rm \
+                -v /var/run/docker.sock:/var/run/docker.sock \
+                aquasec/trivy image devops-demo
+                '''
             }
         }
 
